@@ -1,0 +1,83 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.3'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.josue'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compileOnly 'org.projectlombok:lombok:1.18.20'
+	annotationProcessor 'org.projectlombok:lombok:1.18.20'
+	testCompileOnly 'org.projectlombok:lombok:1.18.20'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
+
+	runtimeOnly 'org.postgresql:postgresql'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+	useJUnitPlatform()
+}
+
+/*
+Formas de declaracion de dependencias
+
+Cada forma de declaración en gradle define el alcance que tendrá la dependendcia dentro del ciclo de
+vida de nuestro proyecto, a partir de esto tenemos los siguientes:
+ 	implementation
+	Solo de implementación
+
+	compileOnly
+	Solo durante compilación
+
+	compileClasspath extends compileOnly, implementation
+	Compile classpath, used when compiling source. Used by task compileJava.
+
+	annotationProcessor
+	Procesadores de compilación usados durante la compilación
+
+	runtimeOnly
+	Solo durante tiempo de ejecución
+
+	runtimeClasspath extends runtimeOnly, implementation
+	Runtime classpath contains elements of the implementation, as well as runtime only elements.
+
+	testImplementation extends implementation
+	Dependencias de implentación para pruebas.
+
+	testCompileOnly
+	Dependencias para compilar pruebas.
+
+	testCompileClasspath extends testCompileOnly, testImplementation
+	Test compile classpath, used when compiling test sources. Used by task compileTestJava.
+
+	testRuntimeOnly extends runtimeOnly
+	Runtime only dependencies for running tests.
+
+	testRuntimeClasspath extends testRuntimeOnly, testImplementation
+	Runtime classpath for running tests. Used by task test.
+
+	archives
+	Artifacts (e.g. jars) produced by this project. Used by Gradle to determine "default" tasks to execute when building.
+
+	default extends runtimeElements
+	The default configuration used by a project dependency on this project. Contains the artifacts and dependencies required by this project at runtime.
+* */
