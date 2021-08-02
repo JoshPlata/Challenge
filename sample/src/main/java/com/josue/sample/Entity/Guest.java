@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @Entity
@@ -24,7 +25,7 @@ public class Guest {
     @OneToOne
     @JoinColumn(name = "type", referencedColumnName = "id")
     private GuestType type;
-    @ManyToOne
-    @JoinColumn(name = "reservation_id")
-    private Reservation reservation;
+
+    @OneToMany(mappedBy = "guest", orphanRemoval = true, fetch = FetchType.LAZY)
+    private Set<Reservation> reservations;
 }

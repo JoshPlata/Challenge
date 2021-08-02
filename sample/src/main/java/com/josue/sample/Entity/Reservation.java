@@ -25,7 +25,12 @@ public class Reservation {
     private boolean checkIn;
     @Column(name = "check_out")
     private boolean checkOut;
-    @OneToMany(mappedBy = "reservation", orphanRemoval = true, fetch = FetchType.LAZY)
-    private Set<Room> room;
-    @OneToMany(mappedBy = "reservation", orphanRemoval = true, fetch = FetchType.LAZY)
-    private Set<Guest> guest;}
+
+    @ManyToOne
+    @JoinColumn(name = "room_id")
+    private Room room;
+
+    @ManyToOne
+    @JoinColumn(name = "guest_id")
+    private Guest guest;
+}

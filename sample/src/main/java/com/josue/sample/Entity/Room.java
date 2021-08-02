@@ -3,6 +3,7 @@ package com.josue.sample.Entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -25,9 +26,8 @@ public class Room {
     @JoinColumn(name = "type", referencedColumnName = "id")
     private RoomType type;
 
-    @ManyToOne
-    @JoinColumn(name = "reservation_id")
-    private Reservation reservation;
+    @OneToMany(mappedBy = "room", orphanRemoval = true, fetch = FetchType.LAZY)
+    private Set<Reservation> reservations;
 
     @ManyToOne
     @JoinColumn(name = "hotel_id")
