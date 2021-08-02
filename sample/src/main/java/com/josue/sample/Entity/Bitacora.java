@@ -1,18 +1,20 @@
 package com.josue.sample.Entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
+@ToString
+@EqualsAndHashCode
 @Entity
 @Table(name = "bitacora_reservaciones")
 public class Bitacora {
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
     @Column(name = "hotel_name")

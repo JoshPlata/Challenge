@@ -1,14 +1,19 @@
 package com.josue.sample.Entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Data
 @Entity
+@ToString
+@EqualsAndHashCode
 @Table(name = "guest")
 public class Guest {
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
     @Column(name = "first_name")
