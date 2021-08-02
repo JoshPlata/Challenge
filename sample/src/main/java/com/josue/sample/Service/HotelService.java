@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 
 @CommonsLog
 @Service
-public class Test {
+public class HotelService {
     @Autowired
     private BitacoraRepository bitacoraRepository;
 
-    public Test(BitacoraRepository bitacoraRepository){
+    public HotelService(BitacoraRepository bitacoraRepository){
         this.bitacoraRepository =  bitacoraRepository;
     }
 

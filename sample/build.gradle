@@ -41,43 +41,55 @@ test {
 Formas de declaracion de dependencias
 
 Cada forma de declaración en gradle define el alcance que tendrá la dependendcia dentro del ciclo de
-vida de nuestro proyecto, a partir de esto tenemos los siguientes:
- 	implementation
-	Solo de implementación
+vida de nuestro proyecto, también estas pueden tener uno de 3 diferenter roles descritos a continuación:
 
-	compileOnly
+1.- Para declarar dependencias
+
+2.- Como consumidor, para resolver un set de dependencias a archivos
+
+3.- Como productos, para exponer artefactos y otras dependencias, para el consumo de otros proyectos.
+
+A partir de esto tenemos los siguientes:
+
+ 	- implementation
+	Solo de implementación, dependencias no expuestas
+
+	- compileOnly
 	Solo durante compilación
 
-	compileClasspath extends compileOnly, implementation
-	Compile classpath, used when compiling source. Used by task compileJava.
+	- compileClasspath extends compileOnly, implementation
+	Usado cuando se compila el código, por la tarea de compileJava.
 
-	annotationProcessor
-	Procesadores de compilación usados durante la compilación
+	- annotationProcessor
+	Procesadores de anotaciones usados durante la compilación
 
-	runtimeOnly
+	-testAnnotationProcessor
+	Procesadores de anotaciones usados durante la compilación en pruebas
+
+	- runtimeOnly
 	Solo durante tiempo de ejecución
 
-	runtimeClasspath extends runtimeOnly, implementation
-	Runtime classpath contains elements of the implementation, as well as runtime only elements.
+	- runtimeClasspath extends runtimeOnly, implementation
+	Para tiempo de ejecucion, con elementos de implementacion.
 
-	testImplementation extends implementation
+	- testImplementation extends implementation
 	Dependencias de implentación para pruebas.
 
-	testCompileOnly
+	- testCompileOnly
 	Dependencias para compilar pruebas.
 
-	testCompileClasspath extends testCompileOnly, testImplementation
-	Test compile classpath, used when compiling test sources. Used by task compileTestJava.
+	- testCompileClasspath extends testCompileOnly, testImplementation
+	Usado cuando se compila para pruebas, usado por la tarea de compileTestJava.
 
-	testRuntimeOnly extends runtimeOnly
-	Runtime only dependencies for running tests.
+	- testRuntimeOnly extends runtimeOnly
+	Para tiempo de ejecucion en pruebas.
 
-	testRuntimeClasspath extends testRuntimeOnly, testImplementation
-	Runtime classpath for running tests. Used by task test.
+	- testRuntimeClasspath extends testRuntimeOnly, testImplementation
+	Usado en tiempo de ejecuciòn para pruebas, usado por la tarea test.
 
-	archives
-	Artifacts (e.g. jars) produced by this project. Used by Gradle to determine "default" tasks to execute when building.
+	- archives
+	Artefactos producidos por este proyecto como jars, usados por gradle para determinar tareas default cuando lo construye.
 
-	default extends runtimeElements
-	The default configuration used by a project dependency on this project. Contains the artifacts and dependencies required by this project at runtime.
+	- default extends runtimeElements
+	Contiene artefactos y dependencias requeridas por el proyecto en tiempo de ejecución.
 * */
