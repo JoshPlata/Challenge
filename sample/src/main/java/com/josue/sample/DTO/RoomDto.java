@@ -9,4 +9,5 @@ public class RoomDto {
     private int floor;
     private int maxGuests;
     private Long type;
+    private Long hotelId;
 }

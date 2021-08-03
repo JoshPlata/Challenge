@@ -10,7 +10,7 @@ import java.util.Set;
 @Data
 @Entity
 @EqualsAndHashCode
-@ToString
+@ToString(exclude = "room")
 @Table(name = "Hotel")
 public class Hotel {
     @Id
