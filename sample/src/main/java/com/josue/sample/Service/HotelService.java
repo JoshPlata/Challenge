@@ -54,7 +54,7 @@ public class HotelService {
                             room.setName(item.getName());
                             room.setFloor(item.getFloor());
                             room.setMaxGuests(item.getMaxGuests());
-                            room.setType(Objects.nonNull(rt.get()) ? rt.get() : null);
+                            room.setType(rt.isPresent() ? rt.get() : null);
                             return room;
                         }).forEach(item -> roomRepository.save(item));
 
